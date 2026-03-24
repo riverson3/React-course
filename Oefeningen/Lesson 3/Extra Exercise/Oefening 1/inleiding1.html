@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function Book({author, title}){
+        return(
+          <>
+            <p>Author: {author}</p>
+            <p>Title: {title}</p>
+          </>
+        )
+      }
+
+      function App(){
+        const books = [{
+          author: "J.R.R Tolkien",
+          title: "Fellowship of the ring",
+          id: crypto.randomUUID()
+        },{
+          author: "Aldous Huxley",
+          title: "Brave new world",
+          id: crypto.randomUUID()
+        },{
+          author: "George Orwell",
+          title: "1984",
+          id: crypto.randomUUID()
+        }];
+
+        return(
+          <>
+            {books.map(books => {
+              return(
+                <Book 
+                  author= {books.author}
+                  title= {books.title}
+                  key = {books.id}
+                />
+              );
+            })}
+          </>
+        );
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

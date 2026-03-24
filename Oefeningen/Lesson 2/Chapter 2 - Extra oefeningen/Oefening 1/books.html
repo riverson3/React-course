@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        function BookDetails(){
+            return(
+                <>
+                    <p>Author: J.R.R. Tolkien</p>
+                    <p>Title: The Fellowship of the Ring</p>
+                    <p>Price: €9,97</p>
+                    <img src="images/fellowship-of-the-ring.jpg" width="150"></img>
+                </>
+            )
+        }
+        
+        function App(){
+            return(
+            <>
+                <BookDetails />
+            </>
+            ) 
+        }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

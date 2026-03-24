@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function InputFilms({films, setFilms}){
+        const [titleInput, setTitleInput] = React.useState('')
+        const [genreInput, setGenreInput] = React.useState('')
+
+        function addFilm(){
+          setFilms([
+            ...films,
+            {
+              title: titleInput,
+              genre: genreInput,
+              id: crypto.randomUUID()
+            }
+          ])
+
+          setTitleInput('')
+          setGenreInput('')
+        }
+
+        function saveTitle(event){
+          setTitleInput(event.target.value)
+        }
+
+        function saveGenre(event){
+          setGenreInput(event.target.value)
+        }   
+              
+        return(
+          <>
+            <input placeholder="Title" onChange={saveTitle} value={titleInput}></input>
+            <input placeholder="Genre" onChange={saveGenre} value={genreInput}></input>
+            <button onClick={addFilm}>Add</button>
+          </>
+        )
+      }
+
+      function Film({title, genre}){
+        return(
+          <>
+            <p>Title: {title}</p>
+            <p>Genre: {genre}</p>
+          </>
+        )
+      }
+
+      function Films({films}){
+        return(
+          <>
+            {films.map(film =>{
+              return(
+                <Film
+                  title = {film.title}
+                  genre = {film.genre}
+                  key = {film.id}
+                />
+              )
+            })}
+          </>
+        )
+      }
+
+      function App(){
+        const [films, setFilms] = React.useState([])
+        return(
+          <>
+            <InputFilms
+              films = {films}
+              setFilms= {setFilms}
+            />
+            <Films
+              films = {films}
+              setFilms = {setFilms}
+            />
+          </>
+        )
+      }
+
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

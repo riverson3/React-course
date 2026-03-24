@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <link href="style.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        function BookDetails({author, title, price, imageSrc}){
+            return(
+                <>
+                <div class="book-details">
+                    <p>Author: {author}</p>
+                    <p>Title: {title}</p>
+                    <p>Price: {price}</p>
+                    <img src={imageSrc} width="150" class="cover-img"></img>
+                </div>
+                </>
+            )
+        }
+        
+        function App(){
+            return(
+            <>
+                <BookDetails author="J.R.R Tolkien" title="The Fellowship of ring" price="€9.97" imageSrc="images/fellowship-of-the-ring.jpg"/>
+                <BookDetails author="George Orwell" title="1984" price="€7.89" imageSrc="images/1984.jpg" />
+                <BookDetails author="Aldous Huxley" title="Brave New World" price="€9.97" imageSrc="images/brave-new-world.jpg" />
+            </>
+            ) 
+        }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
