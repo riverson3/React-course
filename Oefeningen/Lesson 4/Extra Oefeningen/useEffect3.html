@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+        function App(){
+            const [count, setCount] = React.useState(0)
+
+            
+            React.useEffect(() => {
+                console.log("Count werd geüpdatet")
+            }, [count])
+
+            function increaseCount(){
+                setCount(count + 1)
+            }
+
+             return(
+                <>
+                    <button onClick={increaseCount}>Test</button>
+                    <p>Er word {count} keer op de knop gedrukt.</p>
+                </>
+            )
+        }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
